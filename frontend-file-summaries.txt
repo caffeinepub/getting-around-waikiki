@@ -1,0 +1,13 @@
+{
+  "frontend/src/index.css": "Global styles with a warm tropical Hawaiian OKLCH color system (coral primary, sandy background, teal accent, sunset orange), custom Google Fonts import for Playfair Display and Inter, and base typography rules.",
+  "frontend/tailwind.config.js": "Extended Tailwind config with tropical color palette tokens (coral, sand, teal, sunset), custom font families (Playfair Display display, Inter sans), enhanced border radii, card shadows, and fade-in animation.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations — fetching all entries, filtering by category, adding, and deleting transport entries with proper cache invalidation.",
+  "frontend/src/App.tsx": "Root app component that renders the TransportationGuide page as the default view.",
+  "frontend/src/components/Layout.tsx": "Full-page layout wrapper with a sticky header (logo + branding), main content slot, and footer with copyright and caffeine.ai attribution link.",
+  "frontend/src/components/HeroBanner.tsx": "Hero banner component displaying the generated Waikiki beach panorama with a gradient overlay and decorative title/tagline text.",
+  "frontend/src/components/CategoryFilter.tsx": "Pill-button category filter bar for all 7 transport categories plus \"All\", showing entry counts and active state styling.",
+  "frontend/src/components/TransportCard.tsx": "Reusable card component displaying a single transport entry with emoji icon, category badge, description, pricing block, and tips block in tropical styling.",
+  "frontend/src/components/EmptyState.tsx": "Empty/no-results state component with contextual messaging for filtered or unfiltered empty views.",
+  "frontend/src/components/LoadingSkeleton.tsx": "Grid of 6 skeleton placeholder cards shown while transport entries are loading from the backend.",
+  "frontend/src/pages/TransportationGuide.tsx": "Main guide page composing HeroBanner, search input, CategoryFilter, and a responsive grid of TransportCards with client-side filtering by category and search query."
+}

@@ -1,0 +1,91 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Getting Around Waikiki — Tourist Transportation Guide App",
+  "requirements": [
+    {
+      "id": "REQ-2",
+      "summary": "Build a frontend transportation guide that displays all Waikiki/Oahu transportation options with clear navigation",
+      "acceptanceCriteria": [
+        "All transportation categories are displayed on the page",
+        "Each card/section shows title, pricing, description, and tips",
+        "Users can browse or filter by category",
+        "Content is readable and well-organized on both mobile and desktop"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/TransportationGuide.tsx",
+          "operation": "create",
+          "description": "Create the main transportation guide page that fetches and displays all transport entries from the backend. Include category filtering/navigation, and render each entry as a card showing title, pricing, description, and tips. Use backend.getAllEntries() to retrieve data. Ensure responsive layout for mobile and desktop."
+        },
+        {
+          "path": "frontend/src/components/TransportCard.tsx",
+          "operation": "create",
+          "description": "Create a reusable TransportCard component that displays a single transportation entry with title, category badge, pricing info, description, and tips. Apply tropical-themed styling consistent with REQ-3."
+        },
+        {
+          "path": "frontend/src/components/CategoryFilter.tsx",
+          "operation": "create",
+          "description": "Create a CategoryFilter component that displays filter buttons or tabs for each transportation category (TheBus, Biki, Trolley, Rideshare, Car Rental, Walking, Other). When clicked, filter the displayed entries by category."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the TransportationGuide page into the app routing. Set it as the main/default route so users land on the guide when opening the app."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Apply a warm, tropical visual theme inspired by Hawaii with sandy, ocean, and sunset tones",
+      "acceptanceCriteria": [
+        "Color palette reflects a tropical Hawaiian aesthetic without using blue/purple as primary colors",
+        "Typography is clear and accessible",
+        "Theme is consistent across all sections and components"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define global CSS custom properties and base styles for the tropical Hawaiian theme. Use warm coral, sandy beige, ocean teal, and sunset orange tones. Set clean, airy typography with accessible font sizes and line heights. Ensure consistent styling for headings, body text, and UI elements."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind theme with the tropical color palette: coral, sandy beige, ocean teal, sunset orange. Configure typography scales and spacing to support a clean, airy layout. Ensure colors are applied consistently across all utility classes used in components."
+        },
+        {
+          "path": "frontend/src/components/Layout.tsx",
+          "operation": "create",
+          "description": "Create a Layout component that wraps the app content with consistent header/footer and applies the tropical theme styling. Include bold section headers and welcoming typography. This component ensures theme consistency across all pages."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Generate and display a hero banner image featuring a scenic Waikiki beach and cityscape",
+      "acceptanceCriteria": [
+        "Hero image is displayed prominently at the top of the page",
+        "Image is served from frontend/public/assets/generated",
+        "Image complements the tropical visual theme"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/HeroBanner.tsx",
+          "operation": "create",
+          "description": "Create a HeroBanner component that displays the generated hero image from frontend/public/assets/generated/waikiki-hero.dim_1200x400.png at the top of the guide. Include an optional overlay with the app title or tagline. Ensure the image is responsive and maintains aspect ratio on mobile and desktop."
+        },
+        {
+          "path": "frontend/src/pages/TransportationGuide.tsx",
+          "operation": "modify",
+          "description": "Import and render the HeroBanner component at the top of the TransportationGuide page, above the category filter and transport cards. Ensure it sets the visual tone for the entire guide."
+        },
+        {
+          "path": "frontend/src/components/TransportCard.tsx",
+          "operation": "modify",
+          "description": "Optionally integrate transport category icons from frontend/public/assets/generated/transport-icons.dim_512x128.png into each TransportCard to visually distinguish categories. Extract icon sprites or use as a single image with CSS positioning."
+        }
+      ]
+    }
+  ]
+}

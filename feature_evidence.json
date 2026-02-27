@@ -1,0 +1,69 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-build-a-frontend-transportation-guide-that-displays-all-waikiki-oahu-transportation-options-each-section-should-show-the-transport-type-pricing-information-and-practical-tips-for-tourists-include-a-clear-navigation-or-filtering-mechanism-to-browse-categories",
+      "featureTitle": "Build a frontend transportation guide that displays all Waikiki/Oahu transportation options. Each section should show the transport type, pricing information, and practical tips for tourists. Include a clear navigation or filtering mechanism to browse categories.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/CategoryFilter.tsx",
+        "frontend/src/components/TransportCard.tsx",
+        "frontend/src/pages/TransportationGuide.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-warm-tropical-visual-theme-inspired-by-hawaii-using-sandy-ocean-and-sunset-tones-e-g-warm-coral-sandy-beige-ocean-teal-use-a-clean-airy-layout-with-bold-section-headers-and-friendly-typography-that-feels-welcoming-to-tourists-apply-the-theme-consistently-across-all-ui-components",
+      "featureTitle": "Apply a warm, tropical visual theme inspired by Hawaii — using sandy, ocean, and sunset tones (e.g., warm coral, sandy beige, ocean teal). Use a clean, airy layout with bold section headers and friendly typography that feels welcoming to tourists. Apply the theme consistently across all UI components.",
+      "files": [
+        "frontend/src/components/Layout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-generate-and-display-a-hero-banner-image-at-the-top-of-the-guide-featuring-a-scenic-waikiki-beach-and-cityscape-with-a-tropical-sun-drenched-atmosphere-to-set-the-visual-tone-of-the-app",
+      "featureTitle": "Generate and display a hero banner image at the top of the guide featuring a scenic Waikiki beach and cityscape with a tropical, sun-drenched atmosphere to set the visual tone of the app.",
+      "files": [
+        "frontend/src/components/HeroBanner.tsx",
+        "frontend/src/components/TransportCard.tsx",
+        "frontend/src/pages/TransportationGuide.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

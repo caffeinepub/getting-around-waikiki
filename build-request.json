@@ -1,0 +1,93 @@
+{
+  "kind": "build_request",
+  "title": "Getting Around Waikiki — Tourist Transportation Guide App",
+  "projectName": "Waikiki Guide",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a backend that stores transportation guide data for Waikiki/Oahu, including sections for: TheBus, Biki bike share, trolleys, rideshares (Uber/Lyft), car rentals, walking, and other local transport options. Each entry should have a title, description, pricing info, and practical tips.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Getting Around Waikiki transportation guide",
+          "TheBus and Biki bikes to trolleys, rideshares, car rentals"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores at least 7 transportation categories",
+        "Each category includes title, description, pricing, and tips fields",
+        "Data is queryable from the frontend"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Build a frontend transportation guide that displays all Waikiki/Oahu transportation options. Each section should show the transport type, pricing information, and practical tips for tourists. Include a clear navigation or filtering mechanism to browse categories.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Each section includes tips, pricing info, and practical advice for navigating the island"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All transportation categories are displayed on the page",
+        "Each card/section shows title, pricing, description, and tips",
+        "Users can browse or filter by category",
+        "Content is readable and well-organized on both mobile and desktop"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Apply a warm, tropical visual theme inspired by Hawaii — using sandy, ocean, and sunset tones (e.g., warm coral, sandy beige, ocean teal). Use a clean, airy layout with bold section headers and friendly typography that feels welcoming to tourists. Apply the theme consistently across all UI components.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Color palette reflects a tropical Hawaiian aesthetic without using blue/purple as primary colors",
+        "Typography is clear and accessible",
+        "Theme is consistent across all sections and components"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Generate and display a hero banner image at the top of the guide featuring a scenic Waikiki beach and cityscape with a tropical, sun-drenched atmosphere to set the visual tone of the app.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hero image is displayed prominently at the top of the page",
+        "Image is served from frontend/public/assets/generated",
+        "Image complements the tropical visual theme"
+      ]
+    }
+  ],
+  "constraints": [
+    "All Motoko logic must remain in the single main actor (backend/main.mo)",
+    "Do not edit any files under frontend/src/hooks/ or frontend/src/components/ui"
+  ],
+  "nonGoals": [
+    "Real-time transit tracking or live bus/trolley arrival times",
+    "User accounts or saved preferences",
+    "Booking or purchasing tickets through the app",
+    "Map or GPS-based navigation features"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Scenic Waikiki beachfront panorama with palm trees, ocean water, and the Diamond Head crater in golden sunlight (waikiki-hero.dim_1200x400.png)",
+      "Flat icon set of 7 transportation modes: bus, bicycle, trolley, car, rideshare, walking figure, scooter — in a warm coral and teal color palette (transport-icons.dim_512x128.png)"
+    ],
+    "edits": []
+  }
+}

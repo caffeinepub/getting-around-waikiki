@@ -1,0 +1,63 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-26T18:24:03.311Z",
+  "summary": "The diff implements most requirements well: a Motoko backend with 7 transport categories (REQ-1), a full frontend guide with filtering and cards (REQ-2), a tropical Hawaiian visual theme (REQ-3), and a hero banner referencing the generated image (REQ-4). However, the backend contains no pre-seeded data — it only defines the schema and CRUD operations, so the frontend will show an empty state unless data is added externally. The transport-icons image is not referenced anywhere in the frontend. The hero image path is referenced correctly in HeroBanner.tsx but there is no evidence the image file itself was generated/placed in frontend/public/assets/generated.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Backend stores at least 7 transportation categories with pre-populated data queryable from the frontend",
+      "reason": "The backend defines the 7 category types and CRUD operations, but contains no initialization logic or pre-seeded entries. The frontend will display an empty state unless data is added manually after deployment, so the AC 'Backend stores at least 7 transportation categories' is not met at build time.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "requirement": "Hero image served from frontend/public/assets/generated",
+      "reason": "HeroBanner.tsx references /assets/generated/waikiki-hero.dim_1200x400.png but there is no evidence in the diff that the image file was generated or placed in frontend/public/assets/generated. No binary or asset file addition is listed.",
+      "evidence": [
+        "frontend/src/components/HeroBanner.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Text search filtering of transportation entries",
+      "reason": "The build request does not mention a text search feature — only a navigation or filtering mechanism to browse categories. The TransportationGuide page includes a full-text search input that filters by title, description, pricing, and tips.",
+      "evidence": [
+        "frontend/src/pages/TransportationGuide.tsx"
+      ]
+    },
+    {
+      "description": "Add and delete entry mutations exposed via useQueries hooks",
+      "reason": "The build request is a read-only tourist guide. No requirement mentions the ability to add or delete entries from the frontend. The useAddEntry and useDeleteEntry mutation hooks are implemented.",
+      "evidence": [
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    }
+  ],
+  "confidence": 0.82,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/CategoryFilter.tsx",
+    "frontend/src/components/EmptyState.tsx",
+    "frontend/src/components/HeroBanner.tsx",
+    "frontend/src/components/Layout.tsx",
+    "frontend/src/components/LoadingSkeleton.tsx",
+    "frontend/src/components/TransportCard.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/TransportationGuide.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

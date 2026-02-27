@@ -1,0 +1,22 @@
+{
+  "backend/main.mo": "Motoko actor defining a transportation guide backend with CRUD operations for transport entries, supporting categories like bus, bike, trolley, rideshare, etc., stored in a Map with auto-incrementing IDs.",
+  "feature_evidence.json": "Feature evidence report mapping three implemented features (transportation guide UI, Hawaiian tropical theme, hero banner) to their source files, components, and test IDs.",
+  "frontend-file-summaries.txt": "JSON document containing one-line summaries for each frontend source file, describing their roles in the Waikiki transportation guide app.",
+  "frontend/index.css": "Base Tailwind CSS file defining OKLCH CSS custom properties for light and dark theme tokens (background, foreground, primary, accent, etc.).",
+  "frontend/index.html": "HTML entry point for the Waikiki Guide app, mounting the React app into a root div and loading the main TypeScript module.",
+  "frontend/src/App.tsx": "Root React component that renders the TransportationGuide page as the sole view.",
+  "frontend/src/components/CategoryFilter.tsx": "Pill-button filter bar for 7 transport categories plus 'All', showing emoji labels, optional entry counts, and active/hover styling.",
+  "frontend/src/components/EmptyState.tsx": "Displays a contextual empty or loading state with emoji and messaging when no transport entries are available for the selected category.",
+  "frontend/src/components/HeroBanner.tsx": "Hero banner displaying a Waikiki beach image with a gradient overlay and centered title, tagline, and decorative emoji row.",
+  "frontend/src/components/Layout.tsx": "Full-page layout wrapper with a sticky branded header, main content slot, and footer with copyright and caffeine.ai attribution.",
+  "frontend/src/components/LoadingSkeleton.tsx": "Renders a 6-card skeleton grid using Shadcn Skeleton components as a loading placeholder while transport data is being fetched.",
+  "frontend/src/components/TransportCard.tsx": "Renders a styled card for a single transportation entry, displaying its emoji, category badge, description, pricing, and optional tips using category-specific color metadata.",
+  "frontend/src/hooks/useActor.ts": "Custom hook that creates and caches an ICP backend actor (authenticated or anonymous) using React Query, and invalidates dependent queries whenever the actor changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides an Internet Identity authentication context and provider, exposing login/logout functions, identity state, and login status via a React context and custom hook.",
+  "frontend/src/hooks/useQueries.ts": "Defines React Query hooks for fetching all transport entries, filtering by category, adding a new entry, and deleting an entry via the backend actor.",
+  "frontend/src/index.css": "Global stylesheet that imports Google Fonts, configures Tailwind layers, and defines a tropical Hawaiian OKLCH color palette with light and dark CSS custom properties.",
+  "frontend/src/main.tsx": "Application entry point that mounts the React app wrapped with QueryClientProvider and InternetIdentityProvider.",
+  "frontend/src/pages/TransportationGuide.tsx": "Main page component that displays a hero banner, search input, category filter, and a grid of TransportCard components for Oahu transportation options, with loading and empty states.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration extending the theme with custom OKLCH-based color palettes (coral, sand, teal, sunset), display/sans font families, and plugins for typography, container queries, and animations.",
+  "project_state.json": "Tracks the state of the Waikiki Guide project, including existing frontend features (transportation guide UI, tropical theme, hero banner) and a pending backend feature (AR-1) to store Waikiki/Oahu transportation data with pricing and tips."
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "New project",
+  "architectural_notes": [],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Scenic Waikiki beachfront panorama with palm trees, ocean water, and the Diamond Head crater in golden sunlight (waikiki-hero.dim_1200x400.png)\n- Flat icon set of 7 transportation modes: bus, bicycle, trolley, car, rideshare, walking figure, scooter — in a warm coral and teal color palette (transport-icons.dim_512x128.png)",
+  "existing_features": [
+    {
+      "id": "feature-build-a-frontend-transportation-guide-that-displays-all-waikiki-oahu-transportation-options-each-section-should-show-the-transport-type-pricing-information-and-practical-tips-for-tourists-include-a-clear-navigation-or-filtering-mechanism-to-browse-categories",
+      "title": "Build a frontend transportation guide that displays all Waikiki/Oahu transportation options. Each section should show the transport type, pricing information, and practical tips for tourists. Include a clear navigation or filtering mechanism to browse categories.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-warm-tropical-visual-theme-inspired-by-hawaii-using-sandy-ocean-and-sunset-tones-e-g-warm-coral-sandy-beige-ocean-teal-use-a-clean-airy-layout-with-bold-section-headers-and-friendly-typography-that-feels-welcoming-to-tourists-apply-the-theme-consistently-across-all-ui-components",
+      "title": "Apply a warm, tropical visual theme inspired by Hawaii — using sandy, ocean, and sunset tones (e.g., warm coral, sandy beige, ocean teal). Use a clean, airy layout with bold section headers and friendly typography that feels welcoming to tourists. Apply the theme consistently across all UI components.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-display-a-hero-banner-image-at-the-top-of-the-guide-featuring-a-scenic-waikiki-beach-and-cityscape-with-a-tropical-sun-drenched-atmosphere-to-set-the-visual-tone-of-the-app",
+      "title": "Generate and display a hero banner image at the top of the guide featuring a scenic Waikiki beach and cityscape with a tropical, sun-drenched atmosphere to set the visual tone of the app.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create a backend that stores transportation guide data for Waikiki/Oahu, including sections for: TheBus, Biki bike share, trolleys, rideshares (Uber/Lyft), car rentals, walking, and other local transport options. Each entry should have a title, description, pricing info, and practical tips.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Waikiki Guide",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}
