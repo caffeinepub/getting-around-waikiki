@@ -1,4 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap");
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/assets/fonts/PlayfairDisplay[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
@@ -107,8 +121,8 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
-    font-family: "Inter", system-ui, sans-serif;
+    @apply bg-background text-foreground;
+    font-family: "Figtree", system-ui, sans-serif;
   }
 
   h1,
@@ -124,6 +138,6 @@
     font-family: "Playfair Display", Georgia, serif;
   }
   .font-sans {
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: "Figtree", system-ui, sans-serif;
   }
 }

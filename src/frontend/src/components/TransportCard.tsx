@@ -1,10 +1,9 @@
-import { Badge } from "@/components/ui/badge";
-import { DollarSign, Info, Lightbulb } from "lucide-react";
-import { Category, type TransportEntry } from "../backend";
+import { DollarSign, Lightbulb } from "lucide-react";
+import { Category, type Entry } from "../backend";
 import { normalizeCategory } from "../utils/categoryUtils";
 
 interface TransportCardProps {
-  entry: TransportEntry;
+  entry: Entry;
 }
 
 const CATEGORY_META: Record<
@@ -16,12 +15,12 @@ const CATEGORY_META: Record<
     emoji: "🚌",
     color: "bg-teal-100 text-teal-600 border-teal-200",
   },
-  [Category.biki]: {
+  [Category.bikiBikes]: {
     label: "Biki Bikes",
     emoji: "🚲",
     color: "bg-sunset-300/30 text-sunset-600 border-sunset-300",
   },
-  [Category.trolley]: {
+  [Category.waikikiTrolley]: {
     label: "Trolley",
     emoji: "🚃",
     color: "bg-coral-100 text-coral-600 border-coral-200",
@@ -36,14 +35,14 @@ const CATEGORY_META: Record<
     emoji: "🔑",
     color: "bg-teal-50 text-teal-500 border-teal-100",
   },
-  [Category.walking]: {
-    label: "Walking",
-    emoji: "🚶",
+  [Category.taxi]: {
+    label: "Taxi",
+    emoji: "🚕",
     color: "bg-sunset-300/20 text-sunset-600 border-sunset-300",
   },
-  [Category.other]: {
-    label: "Other",
-    emoji: "✨",
+  [Category.shuttleTours]: {
+    label: "Shuttle & Tours",
+    emoji: "🚐",
     color: "bg-sand-100 text-sand-500 border-sand-200",
   },
 };
@@ -67,7 +66,7 @@ export default function TransportCard({ entry }: TransportCardProps) {
           <div className="flex items-center gap-2.5">
             <span className="text-2xl leading-none">{meta.emoji}</span>
             <h3 className="font-display text-lg font-bold text-foreground leading-tight">
-              {entry.title}
+              {entry.name}
             </h3>
           </div>
           <span
@@ -81,12 +80,9 @@ export default function TransportCard({ entry }: TransportCardProps) {
         </div>
 
         {/* Description */}
-        <div className="flex gap-2">
-          <Info className="w-4 h-4 text-muted-foreground shrink-0 mt-0.5" />
-          <p className="font-sans text-sm text-foreground/80 leading-relaxed">
-            {entry.description}
-          </p>
-        </div>
+        <p className="font-sans text-sm text-foreground/80 leading-relaxed">
+          {entry.description}
+        </p>
 
         {/* Pricing */}
         <div className="flex gap-2 bg-secondary/60 rounded-xl px-3 py-2.5">
@@ -96,7 +92,7 @@ export default function TransportCard({ entry }: TransportCardProps) {
               Pricing
             </p>
             <p className="font-sans text-sm text-foreground/80 leading-relaxed">
-              {entry.pricing}
+              {entry.priceInfo}
             </p>
           </div>
         </div>

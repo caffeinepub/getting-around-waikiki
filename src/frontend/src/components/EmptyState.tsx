@@ -1,18 +1,18 @@
-import type { Category } from "../backend";
+import { Category } from "../backend";
 
 interface EmptyStateProps {
   category: Category | null;
   isLoading?: boolean;
 }
 
-const CATEGORY_LABELS: Record<string, string> = {
-  theBus: "TheBus",
-  biki: "Biki Bikes",
-  trolley: "Trolley",
-  rideshare: "Rideshare",
-  carRental: "Car Rental",
-  walking: "Walking",
-  other: "Other",
+const CATEGORY_LABELS: Partial<Record<Category, string>> = {
+  [Category.theBus]: "TheBus",
+  [Category.bikiBikes]: "Biki Bikes",
+  [Category.waikikiTrolley]: "Waikiki Trolley",
+  [Category.rideshare]: "Rideshare",
+  [Category.carRental]: "Car Rental",
+  [Category.taxi]: "Taxi",
+  [Category.shuttleTours]: "Shuttle & Tours",
 };
 
 export default function EmptyState({ category, isLoading }: EmptyStateProps) {

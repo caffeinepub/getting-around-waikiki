@@ -1,15 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import {
-  Category,
-  type TransportEntry,
-  type TransportEntryInput,
-} from "../backend";
+import { Category, type Entry } from "../backend";
 import { useActor } from "./useActor";
 
 export function useGetAllEntries() {
   const { actor, isFetching } = useActor();
 
-  return useQuery<TransportEntry[]>({
+  return useQuery<Entry[]>({
     queryKey: ["entries"],
     queryFn: async () => {
       if (!actor) return [];
@@ -22,7 +18,7 @@ export function useGetAllEntries() {
 export function useGetEntriesByCategory(category: Category | null) {
   const { actor, isFetching } = useActor();
 
-  return useQuery<TransportEntry[]>({
+  return useQuery<Entry[]>({
     queryKey: ["entries", "category", category],
     queryFn: async () => {
       if (!actor) return [];
@@ -38,9 +34,21 @@ export function useAddEntry() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (entry: TransportEntryInput) => {
+    mutationFn: async (entry: {
+      name: string;
+      category: Category;
+      description: string;
+      priceInfo: string;
+      tips: string;
+    }) => {
       if (!actor) throw new Error("Actor not initialized");
-      return actor.addEntry(entry);
+      return actor.addEntry(
+        entry.name,
+        entry.category,
+        entry.description,
+        entry.priceInfo,
+        entry.tips,
+      );
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["entries"] });

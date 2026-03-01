@@ -20,28 +20,21 @@ export const _CaffeineStorageRefillResult = IDL.Record({
   'topped_up_amount' : IDL.Opt(IDL.Nat),
 });
 export const Category = IDL.Variant({
-  'other' : IDL.Null,
-  'biki' : IDL.Null,
+  'taxi' : IDL.Null,
   'rideshare' : IDL.Null,
   'theBus' : IDL.Null,
-  'walking' : IDL.Null,
-  'trolley' : IDL.Null,
+  'waikikiTrolley' : IDL.Null,
+  'bikiBikes' : IDL.Null,
+  'shuttleTours' : IDL.Null,
   'carRental' : IDL.Null,
 });
-export const TransportEntryInput = IDL.Record({
-  'title' : IDL.Text,
-  'tips' : IDL.Text,
-  'description' : IDL.Text,
-  'pricing' : IDL.Text,
-  'category' : Category,
-});
-export const TransportEntry = IDL.Record({
+export const Entry = IDL.Record({
   'id' : IDL.Nat,
-  'title' : IDL.Text,
+  'name' : IDL.Text,
   'tips' : IDL.Text,
   'description' : IDL.Text,
-  'pricing' : IDL.Text,
   'category' : Category,
+  'priceInfo' : IDL.Text,
 });
 
 export const idlService = IDL.Service({
@@ -71,16 +64,19 @@ export const idlService = IDL.Service({
       [],
     ),
   '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
-  'addEntry' : IDL.Func([TransportEntryInput], [IDL.Nat], []),
-  'deleteEntry' : IDL.Func([IDL.Nat], [], []),
-  'getAllEntries' : IDL.Func([], [IDL.Vec(TransportEntry)], ['query']),
-  'getEntriesByCategory' : IDL.Func(
-      [Category],
-      [IDL.Vec(TransportEntry)],
-      ['query'],
+  'addEntry' : IDL.Func(
+      [IDL.Text, Category, IDL.Text, IDL.Text, IDL.Text],
+      [IDL.Nat],
+      [],
     ),
-  'getEntry' : IDL.Func([IDL.Nat], [TransportEntry], ['query']),
-  'updateEntry' : IDL.Func([IDL.Nat, TransportEntryInput], [], []),
+  'deleteEntry' : IDL.Func([IDL.Nat], [], []),
+  'getAllEntries' : IDL.Func([], [IDL.Vec(Entry)], ['query']),
+  'getEntriesByCategory' : IDL.Func([Category], [IDL.Vec(Entry)], ['query']),
+  'updateEntry' : IDL.Func(
+      [IDL.Nat, IDL.Text, Category, IDL.Text, IDL.Text, IDL.Text],
+      [],
+      [],
+    ),
 });
 
 export const idlInitArgs = [];
@@ -98,28 +94,21 @@ export const idlFactory = ({ IDL }) => {
     'topped_up_amount' : IDL.Opt(IDL.Nat),
   });
   const Category = IDL.Variant({
-    'other' : IDL.Null,
-    'biki' : IDL.Null,
+    'taxi' : IDL.Null,
     'rideshare' : IDL.Null,
     'theBus' : IDL.Null,
-    'walking' : IDL.Null,
-    'trolley' : IDL.Null,
+    'waikikiTrolley' : IDL.Null,
+    'bikiBikes' : IDL.Null,
+    'shuttleTours' : IDL.Null,
     'carRental' : IDL.Null,
   });
-  const TransportEntryInput = IDL.Record({
-    'title' : IDL.Text,
-    'tips' : IDL.Text,
-    'description' : IDL.Text,
-    'pricing' : IDL.Text,
-    'category' : Category,
-  });
-  const TransportEntry = IDL.Record({
+  const Entry = IDL.Record({
     'id' : IDL.Nat,
-    'title' : IDL.Text,
+    'name' : IDL.Text,
     'tips' : IDL.Text,
     'description' : IDL.Text,
-    'pricing' : IDL.Text,
     'category' : Category,
+    'priceInfo' : IDL.Text,
   });
   
   return IDL.Service({
@@ -149,16 +138,19 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
     '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
-    'addEntry' : IDL.Func([TransportEntryInput], [IDL.Nat], []),
-    'deleteEntry' : IDL.Func([IDL.Nat], [], []),
-    'getAllEntries' : IDL.Func([], [IDL.Vec(TransportEntry)], ['query']),
-    'getEntriesByCategory' : IDL.Func(
-        [Category],
-        [IDL.Vec(TransportEntry)],
-        ['query'],
+    'addEntry' : IDL.Func(
+        [IDL.Text, Category, IDL.Text, IDL.Text, IDL.Text],
+        [IDL.Nat],
+        [],
       ),
-    'getEntry' : IDL.Func([IDL.Nat], [TransportEntry], ['query']),
-    'updateEntry' : IDL.Func([IDL.Nat, TransportEntryInput], [], []),
+    'deleteEntry' : IDL.Func([IDL.Nat], [], []),
+    'getAllEntries' : IDL.Func([], [IDL.Vec(Entry)], ['query']),
+    'getEntriesByCategory' : IDL.Func([Category], [IDL.Vec(Entry)], ['query']),
+    'updateEntry' : IDL.Func(
+        [IDL.Nat, IDL.Text, Category, IDL.Text, IDL.Text, IDL.Text],
+        [],
+        [],
+      ),
   });
 };
 

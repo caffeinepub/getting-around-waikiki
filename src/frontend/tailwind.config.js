@@ -17,7 +17,7 @@ export default {
         extend: {
             fontFamily: {
                 display: ['Playfair Display', 'Georgia', 'serif'],
-                sans: ['Inter', 'system-ui', 'sans-serif'],
+                sans: ['Figtree', 'system-ui', 'sans-serif'],
             },
             colors: {
                 border: 'oklch(var(--border))',

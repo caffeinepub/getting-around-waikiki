@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { Category } from "../backend";
 
 interface CategoryFilterProps {
@@ -14,12 +13,12 @@ const CATEGORY_CONFIG: {
 }[] = [
   { value: null, label: "All", emoji: "🗺️" },
   { value: Category.theBus, label: "TheBus", emoji: "🚌" },
-  { value: Category.biki, label: "Biki Bikes", emoji: "🚲" },
-  { value: Category.trolley, label: "Trolley", emoji: "🚃" },
+  { value: Category.bikiBikes, label: "Biki Bikes", emoji: "🚲" },
+  { value: Category.waikikiTrolley, label: "Waikiki Trolley", emoji: "🚃" },
   { value: Category.rideshare, label: "Rideshare", emoji: "🚗" },
   { value: Category.carRental, label: "Car Rental", emoji: "🔑" },
-  { value: Category.walking, label: "Walking", emoji: "🚶" },
-  { value: Category.other, label: "Other", emoji: "✨" },
+  { value: Category.taxi, label: "Taxi", emoji: "🚕" },
+  { value: Category.shuttleTours, label: "Shuttle & Tours", emoji: "🚐" },
 ];
 
 export default function CategoryFilter({
@@ -35,7 +34,7 @@ export default function CategoryFilter({
           const count = value !== null && counts ? counts[value] : undefined;
           return (
             <button
-              // biome-ignore lint/a11y/useButtonType: filter button, not in a form context
+              type="button"
               key={label}
               onClick={() => onSelect(value)}
               className={[

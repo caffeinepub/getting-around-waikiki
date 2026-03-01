@@ -7,35 +7,27 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
-export interface TransportEntryInput {
-    title: string;
-    tips: string;
-    description: string;
-    pricing: string;
-    category: Category;
-}
-export interface TransportEntry {
+export interface Entry {
     id: bigint;
-    title: string;
+    name: string;
     tips: string;
     description: string;
-    pricing: string;
     category: Category;
+    priceInfo: string;
 }
 export enum Category {
-    other = "other",
-    biki = "biki",
+    taxi = "taxi",
     rideshare = "rideshare",
     theBus = "theBus",
-    walking = "walking",
-    trolley = "trolley",
+    waikikiTrolley = "waikikiTrolley",
+    bikiBikes = "bikiBikes",
+    shuttleTours = "shuttleTours",
     carRental = "carRental"
 }
 export interface backendInterface {
-    addEntry(entry: TransportEntryInput): Promise<bigint>;
+    addEntry(name: string, category: Category, description: string, priceInfo: string, tips: string): Promise<bigint>;
     deleteEntry(id: bigint): Promise<void>;
-    getAllEntries(): Promise<Array<TransportEntry>>;
-    getEntriesByCategory(category: Category): Promise<Array<TransportEntry>>;
-    getEntry(id: bigint): Promise<TransportEntry>;
-    updateEntry(id: bigint, updatedEntry: TransportEntryInput): Promise<void>;
+    getAllEntries(): Promise<Array<Entry>>;
+    getEntriesByCategory(category: Category): Promise<Array<Entry>>;
+    updateEntry(id: bigint, name: string, category: Category, description: string, priceInfo: string, tips: string): Promise<void>;
 }

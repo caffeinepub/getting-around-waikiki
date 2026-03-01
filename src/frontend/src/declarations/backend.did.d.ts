@@ -10,27 +10,20 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
-export type Category = { 'other' : null } |
-  { 'biki' : null } |
+export type Category = { 'taxi' : null } |
   { 'rideshare' : null } |
   { 'theBus' : null } |
-  { 'walking' : null } |
-  { 'trolley' : null } |
+  { 'waikikiTrolley' : null } |
+  { 'bikiBikes' : null } |
+  { 'shuttleTours' : null } |
   { 'carRental' : null };
-export interface TransportEntry {
+export interface Entry {
   'id' : bigint,
-  'title' : string,
+  'name' : string,
   'tips' : string,
   'description' : string,
-  'pricing' : string,
   'category' : Category,
-}
-export interface TransportEntryInput {
-  'title' : string,
-  'tips' : string,
-  'description' : string,
-  'pricing' : string,
-  'category' : Category,
+  'priceInfo' : string,
 }
 export interface _CaffeineStorageCreateCertificateResult {
   'method' : string,
@@ -59,12 +52,14 @@ export interface _SERVICE {
     _CaffeineStorageRefillResult
   >,
   '_caffeineStorageUpdateGatewayPrincipals' : ActorMethod<[], undefined>,
-  'addEntry' : ActorMethod<[TransportEntryInput], bigint>,
+  'addEntry' : ActorMethod<[string, Category, string, string, string], bigint>,
   'deleteEntry' : ActorMethod<[bigint], undefined>,
-  'getAllEntries' : ActorMethod<[], Array<TransportEntry>>,
-  'getEntriesByCategory' : ActorMethod<[Category], Array<TransportEntry>>,
-  'getEntry' : ActorMethod<[bigint], TransportEntry>,
-  'updateEntry' : ActorMethod<[bigint, TransportEntryInput], undefined>,
+  'getAllEntries' : ActorMethod<[], Array<Entry>>,
+  'getEntriesByCategory' : ActorMethod<[Category], Array<Entry>>,
+  'updateEntry' : ActorMethod<
+    [bigint, string, Category, string, string, string],
+    undefined
+  >,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

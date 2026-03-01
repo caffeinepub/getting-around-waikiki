@@ -1,15 +1,27 @@
-# Specification
+# Getting Around Waikiki
 
-## Summary
-**Goal:** Build a tourist-facing transportation guide app for Waikiki/Oahu that presents all major transport options with pricing, descriptions, and practical tips in a tropical Hawaiian visual theme.
+## Current State
+The project is a transportation guide for tourists visiting Waikiki and Oahu. Previous versions had issues with category filter buttons not working correctly and options not displaying properly.
 
-**Planned changes:**
-- Backend stores transportation guide data covering 7+ categories: TheBus, Biki bike share, trolleys, rideshares (Uber/Lyft), car rentals, walking, and other local options — each with title, description, pricing, and tips fields
-- Frontend displays all transportation categories as browsable cards/sections with title, pricing, description, and tips
-- Category filtering or navigation allows users to browse by transport type
-- Warm tropical color palette (coral, sandy beige, ocean teal) applied consistently across all UI components with bold headers and friendly typography
-- Hero banner image displayed prominently at the top of the page
-- Transport category icons displayed alongside each section
-- Fully responsive layout for mobile and desktop
+## Requested Changes (Diff)
 
-**User-visible outcome:** Tourists can visit the guide, view a scenic Waikiki hero banner, and browse all transportation options for Oahu with pricing and practical tips, filtered by category, in a welcoming tropical-themed interface.
+### Add
+- Reliable static transportation data embedded directly in the frontend (no backend dependency for data)
+- Category filter buttons that work correctly to show/hide transportation entries
+- Clear display of all transportation options on initial load
+
+### Modify
+- Rebuild the app fresh to ensure all filter and display logic works reliably
+- Transportation entries should show on initial load (all categories visible)
+- Clicking a category button filters to show only that category's entries
+
+### Remove
+- Any broken backend-dependent data fetching that caused filter issues
+
+## Implementation Plan
+1. Build a React frontend with static transportation data (14 entries across 7 categories)
+2. Categories: TheBus, Biki Bikes, Waikiki Trolley, Rideshare, Car Rental, Taxi, Shuttle/Tours
+3. Each entry has: name, category, description, price info, tips
+4. Display all entries on load in a card grid
+5. Category filter buttons at top — clicking one shows only entries in that category, clicking "All" resets
+6. Simple, clean UI optimized for mobile tourists

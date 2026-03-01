@@ -89,20 +89,13 @@ export class ExternalBlob {
         return this;
     }
 }
-export interface TransportEntryInput {
-    title: string;
-    tips: string;
-    description: string;
-    pricing: string;
-    category: Category;
-}
-export interface TransportEntry {
+export interface Entry {
     id: bigint;
-    title: string;
+    name: string;
     tips: string;
     description: string;
-    pricing: string;
     category: Category;
+    priceInfo: string;
 }
 export interface _CaffeineStorageCreateCertificateResult {
     method: string;
@@ -116,12 +109,12 @@ export interface _CaffeineStorageRefillInformation {
     proposed_top_up_amount?: bigint;
 }
 export enum Category {
-    other = "other",
-    biki = "biki",
+    taxi = "taxi",
     rideshare = "rideshare",
     theBus = "theBus",
-    walking = "walking",
-    trolley = "trolley",
+    waikikiTrolley = "waikikiTrolley",
+    bikiBikes = "bikiBikes",
+    shuttleTours = "shuttleTours",
     carRental = "carRental"
 }
 export interface backendInterface {
@@ -131,14 +124,13 @@ export interface backendInterface {
     _caffeineStorageCreateCertificate(blobHash: string): Promise<_CaffeineStorageCreateCertificateResult>;
     _caffeineStorageRefillCashier(refillInformation: _CaffeineStorageRefillInformation | null): Promise<_CaffeineStorageRefillResult>;
     _caffeineStorageUpdateGatewayPrincipals(): Promise<void>;
-    addEntry(entry: TransportEntryInput): Promise<bigint>;
+    addEntry(name: string, category: Category, description: string, priceInfo: string, tips: string): Promise<bigint>;
     deleteEntry(id: bigint): Promise<void>;
-    getAllEntries(): Promise<Array<TransportEntry>>;
-    getEntriesByCategory(category: Category): Promise<Array<TransportEntry>>;
-    getEntry(id: bigint): Promise<TransportEntry>;
-    updateEntry(id: bigint, updatedEntry: TransportEntryInput): Promise<void>;
+    getAllEntries(): Promise<Array<Entry>>;
+    getEntriesByCategory(category: Category): Promise<Array<Entry>>;
+    updateEntry(id: bigint, name: string, category: Category, description: string, priceInfo: string, tips: string): Promise<void>;
 }
-import type { Category as _Category, TransportEntry as _TransportEntry, TransportEntryInput as _TransportEntryInput, _CaffeineStorageRefillInformation as __CaffeineStorageRefillInformation, _CaffeineStorageRefillResult as __CaffeineStorageRefillResult } from "./declarations/backend.did.d.ts";
+import type { Category as _Category, Entry as _Entry, _CaffeineStorageRefillInformation as __CaffeineStorageRefillInformation, _CaffeineStorageRefillResult as __CaffeineStorageRefillResult } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
     async _caffeineStorageBlobIsLive(arg0: Uint8Array): Promise<boolean> {
@@ -225,17 +217,17 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async addEntry(arg0: TransportEntryInput): Promise<bigint> {
+    async addEntry(arg0: string, arg1: Category, arg2: string, arg3: string, arg4: string): Promise<bigint> {
         if (this.processError) {
             try {
-                const result = await this.actor.addEntry(to_candid_TransportEntryInput_n8(this._uploadFile, this._downloadFile, arg0));
+                const result = await this.actor.addEntry(arg0, to_candid_Category_n8(this._uploadFile, this._downloadFile, arg1), arg2, arg3, arg4);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.addEntry(to_candid_TransportEntryInput_n8(this._uploadFile, this._downloadFile, arg0));
+            const result = await this.actor.addEntry(arg0, to_candid_Category_n8(this._uploadFile, this._downloadFile, arg1), arg2, arg3, arg4);
             return result;
         }
     }
@@ -253,68 +245,54 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async getAllEntries(): Promise<Array<TransportEntry>> {
+    async getAllEntries(): Promise<Array<Entry>> {
         if (this.processError) {
             try {
                 const result = await this.actor.getAllEntries();
-                return from_candid_vec_n12(this._uploadFile, this._downloadFile, result);
+                return from_candid_vec_n10(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
             const result = await this.actor.getAllEntries();
-            return from_candid_vec_n12(this._uploadFile, this._downloadFile, result);
+            return from_candid_vec_n10(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getEntriesByCategory(arg0: Category): Promise<Array<TransportEntry>> {
+    async getEntriesByCategory(arg0: Category): Promise<Array<Entry>> {
         if (this.processError) {
             try {
-                const result = await this.actor.getEntriesByCategory(to_candid_Category_n10(this._uploadFile, this._downloadFile, arg0));
-                return from_candid_vec_n12(this._uploadFile, this._downloadFile, result);
+                const result = await this.actor.getEntriesByCategory(to_candid_Category_n8(this._uploadFile, this._downloadFile, arg0));
+                return from_candid_vec_n10(this._uploadFile, this._downloadFile, result);
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.getEntriesByCategory(to_candid_Category_n10(this._uploadFile, this._downloadFile, arg0));
-            return from_candid_vec_n12(this._uploadFile, this._downloadFile, result);
+            const result = await this.actor.getEntriesByCategory(to_candid_Category_n8(this._uploadFile, this._downloadFile, arg0));
+            return from_candid_vec_n10(this._uploadFile, this._downloadFile, result);
         }
     }
-    async getEntry(arg0: bigint): Promise<TransportEntry> {
+    async updateEntry(arg0: bigint, arg1: string, arg2: Category, arg3: string, arg4: string, arg5: string): Promise<void> {
         if (this.processError) {
             try {
-                const result = await this.actor.getEntry(arg0);
-                return from_candid_TransportEntry_n13(this._uploadFile, this._downloadFile, result);
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.getEntry(arg0);
-            return from_candid_TransportEntry_n13(this._uploadFile, this._downloadFile, result);
-        }
-    }
-    async updateEntry(arg0: bigint, arg1: TransportEntryInput): Promise<void> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.updateEntry(arg0, to_candid_TransportEntryInput_n8(this._uploadFile, this._downloadFile, arg1));
+                const result = await this.actor.updateEntry(arg0, arg1, to_candid_Category_n8(this._uploadFile, this._downloadFile, arg2), arg3, arg4, arg5);
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.updateEntry(arg0, to_candid_TransportEntryInput_n8(this._uploadFile, this._downloadFile, arg1));
+            const result = await this.actor.updateEntry(arg0, arg1, to_candid_Category_n8(this._uploadFile, this._downloadFile, arg2), arg3, arg4, arg5);
             return result;
         }
     }
 }
-function from_candid_Category_n15(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Category): Category {
-    return from_candid_variant_n16(_uploadFile, _downloadFile, value);
+function from_candid_Category_n13(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Category): Category {
+    return from_candid_variant_n14(_uploadFile, _downloadFile, value);
 }
-function from_candid_TransportEntry_n13(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _TransportEntry): TransportEntry {
-    return from_candid_record_n14(_uploadFile, _downloadFile, value);
+function from_candid_Entry_n11(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _Entry): Entry {
+    return from_candid_record_n12(_uploadFile, _downloadFile, value);
 }
 function from_candid__CaffeineStorageRefillResult_n4(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: __CaffeineStorageRefillResult): _CaffeineStorageRefillResult {
     return from_candid_record_n5(_uploadFile, _downloadFile, value);
@@ -325,28 +303,28 @@ function from_candid_opt_n6(_uploadFile: (file: ExternalBlob) => Promise<Uint8Ar
 function from_candid_opt_n7(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [bigint]): bigint | null {
     return value.length === 0 ? null : value[0];
 }
-function from_candid_record_n14(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+function from_candid_record_n12(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
     id: bigint;
-    title: string;
+    name: string;
     tips: string;
     description: string;
-    pricing: string;
     category: _Category;
+    priceInfo: string;
 }): {
     id: bigint;
-    title: string;
+    name: string;
     tips: string;
     description: string;
-    pricing: string;
     category: Category;
+    priceInfo: string;
 } {
     return {
         id: value.id,
-        title: value.title,
+        name: value.name,
         tips: value.tips,
         description: value.description,
-        pricing: value.pricing,
-        category: from_candid_Category_n15(_uploadFile, _downloadFile, value.category)
+        category: from_candid_Category_n13(_uploadFile, _downloadFile, value.category),
+        priceInfo: value.priceInfo
     };
 }
 function from_candid_record_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
@@ -361,31 +339,28 @@ function from_candid_record_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint
         topped_up_amount: record_opt_to_undefined(from_candid_opt_n7(_uploadFile, _downloadFile, value.topped_up_amount))
     };
 }
-function from_candid_variant_n16(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
-    other: null;
-} | {
-    biki: null;
+function from_candid_variant_n14(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+    taxi: null;
 } | {
     rideshare: null;
 } | {
     theBus: null;
 } | {
-    walking: null;
+    waikikiTrolley: null;
 } | {
-    trolley: null;
+    bikiBikes: null;
+} | {
+    shuttleTours: null;
 } | {
     carRental: null;
 }): Category {
-    return "other" in value ? Category.other : "biki" in value ? Category.biki : "rideshare" in value ? Category.rideshare : "theBus" in value ? Category.theBus : "walking" in value ? Category.walking : "trolley" in value ? Category.trolley : "carRental" in value ? Category.carRental : value;
+    return "taxi" in value ? Category.taxi : "rideshare" in value ? Category.rideshare : "theBus" in value ? Category.theBus : "waikikiTrolley" in value ? Category.waikikiTrolley : "bikiBikes" in value ? Category.bikiBikes : "shuttleTours" in value ? Category.shuttleTours : "carRental" in value ? Category.carRental : value;
 }
-function from_candid_vec_n12(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_TransportEntry>): Array<TransportEntry> {
-    return value.map((x)=>from_candid_TransportEntry_n13(_uploadFile, _downloadFile, x));
+function from_candid_vec_n10(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Entry>): Array<Entry> {
+    return value.map((x)=>from_candid_Entry_n11(_uploadFile, _downloadFile, x));
 }
-function to_candid_Category_n10(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Category): _Category {
-    return to_candid_variant_n11(_uploadFile, _downloadFile, value);
-}
-function to_candid_TransportEntryInput_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: TransportEntryInput): _TransportEntryInput {
-    return to_candid_record_n9(_uploadFile, _downloadFile, value);
+function to_candid_Category_n8(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Category): _Category {
+    return to_candid_variant_n9(_uploadFile, _downloadFile, value);
 }
 function to_candid__CaffeineStorageRefillInformation_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: _CaffeineStorageRefillInformation): __CaffeineStorageRefillInformation {
     return to_candid_record_n3(_uploadFile, _downloadFile, value);
@@ -402,54 +377,33 @@ function to_candid_record_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8A
         proposed_top_up_amount: value.proposed_top_up_amount ? candid_some(value.proposed_top_up_amount) : candid_none()
     };
 }
-function to_candid_record_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
-    title: string;
-    tips: string;
-    description: string;
-    pricing: string;
-    category: Category;
-}): {
-    title: string;
-    tips: string;
-    description: string;
-    pricing: string;
-    category: _Category;
-} {
-    return {
-        title: value.title,
-        tips: value.tips,
-        description: value.description,
-        pricing: value.pricing,
-        category: to_candid_Category_n10(_uploadFile, _downloadFile, value.category)
-    };
-}
-function to_candid_variant_n11(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Category): {
-    other: null;
-} | {
-    biki: null;
+function to_candid_variant_n9(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Category): {
+    taxi: null;
 } | {
     rideshare: null;
 } | {
     theBus: null;
 } | {
-    walking: null;
+    waikikiTrolley: null;
 } | {
-    trolley: null;
+    bikiBikes: null;
+} | {
+    shuttleTours: null;
 } | {
     carRental: null;
 } {
-    return value == Category.other ? {
-        other: null
-    } : value == Category.biki ? {
-        biki: null
+    return value == Category.taxi ? {
+        taxi: null
     } : value == Category.rideshare ? {
         rideshare: null
     } : value == Category.theBus ? {
         theBus: null
-    } : value == Category.walking ? {
-        walking: null
-    } : value == Category.trolley ? {
-        trolley: null
+    } : value == Category.waikikiTrolley ? {
+        waikikiTrolley: null
+    } : value == Category.bikiBikes ? {
+        bikiBikes: null
+    } : value == Category.shuttleTours ? {
+        shuttleTours: null
     } : value == Category.carRental ? {
         carRental: null
     } : value;

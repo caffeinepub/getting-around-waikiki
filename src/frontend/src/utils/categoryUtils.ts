@@ -17,5 +17,5 @@ export function normalizeCategory(raw: unknown): Category {
       return key as Category;
     }
   }
-  return Category.other;
+  return Category.taxi;
 }
