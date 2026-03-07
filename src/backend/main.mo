@@ -5,10 +5,10 @@ import Order "mo:core/Order";
 import Iter "mo:core/Iter";
 import Runtime "mo:core/Runtime";
 import List "mo:core/List";
-import Migration "migration";
+
 import MixinStorage "blob-storage/Mixin";
 
-(with migration = Migration.run)
+
 actor {
   include MixinStorage();
 
